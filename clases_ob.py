@@ -11,6 +11,9 @@ corto, mediano, largo plazo
 dia y alarma de recordatorio
 
 """
+
+#   Variable global de la fecha actual
+
 hoy = datetime.now()
 
 
