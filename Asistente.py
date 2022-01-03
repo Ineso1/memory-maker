@@ -8,6 +8,10 @@ from clases_ob import *
     *   pyttsx3 ----> Conversor de texto a voz
     *   speech recognition ----> Convierte audio a texto 
     *   clases_ob ----> Clases de objetos programados 
+                            +Hora
+                            +Dia
+                            +Tiempo
+                            +Recuerdo
     *   pyehatkit ----> Manda mensajes de whats y reproduce titulos en youtube
 """
 

@@ -60,7 +60,7 @@ class Dia:
 #   Clase tiempo -------------------------------------------------- 
 
 
-class tiempo:
+class Tiempo:
     dia = Dia() 
     hora = Hora()
 
@@ -76,20 +76,24 @@ class tiempo:
     def getFecha(self):
         return f"{self.dia.getDia()},{self.hora.getHora()}"
 
+    def imprimirTiempo(self):
+        print(f"{self.dia.getDia()},{self.hora.getHora()}")
+
 
 #   Clase Recuerdo --------------------------------------------------
 
 class Recuerdo:
-    asunto = ""
-    palabras_claves = ""
-    hora_registro = ""
-    anticipacion_recordatorio = ""
-    hora_programada = ""
-    alarma = "" 
+    asunto = "none"
+    palabras_claves = "none"
+    hora_registro = Tiempo()
+    anticipacion_recordatorio = Hora()
+    hora_programada = Tiempo()
+    alarma = Tiempo() 
 
     def __init__(self, _asunto):
+        self.anticipacion_recordatorio.setHora(13,0)
         self.asunto = _asunto
-        hora_registro = datetime.now()
+        
 
     def setAsunto(self, _asunto):
         self.asunto = _asunto
@@ -103,4 +107,10 @@ class Recuerdo:
     def setAlarma(self, _alarma):
         self.alarma = _alarma
 
+    def imprimirRecuerdo(self):
+        print(f"""
+        *Asunto: {self.asunto}
+        *Hora programada: {self.hora_programada.imprimirTiempo()}
+        *Alarma: {self.alarma.imamirTiempo()}
+        """)
 
