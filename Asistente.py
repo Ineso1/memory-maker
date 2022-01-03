@@ -8,7 +8,7 @@ from clases_ob import *
     *   pyttsx3 ----> Conversor de texto a voz
     *   speech recognition ----> Convierte audio a texto 
     *   clases_ob ----> Clases de objetos programados 
-    *   pyehatkit ----> Manda mensajes de whats
+    *   pyehatkit ----> Manda mensajes de whats y reproduce titulos en youtube
 """
 
 # -----Nombre del asistente-----

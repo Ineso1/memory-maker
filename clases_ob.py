@@ -11,39 +11,73 @@ corto, mediano, largo plazo
 dia y alarma de recordatorio
 
 """
+hoy = datetime.now()
+
+
+#   Clase Hora y dia -------------------------------------------------- 
+#   Setter de hora contiene cambio de hora y minutos
+#   Setter de dia contiene cambio de dia, mes y año
+
+class Hora:
+    hr = hoy.strftime("%H")
+    minutos = hoy.strftime("%M")
+
+    def __init__(self):
+        self.hr = hoy.strftime("%H")
+        self.minutos = hoy.strftime("%M")
+
+    def setHora (self, _hr,_minutos):
+        self.hr = _hr
+        self.minutos = _minutos
+    
+    def getHora (self):
+        return f"{self.hr}:{self.minutos}"
+
+    def imprimirHora (self):
+        print(f"{self.hr} : {self.minutos}")
+
+class Dia:
+    d = hoy.strftime("%d")
+    mes = hoy.strftime("%m")
+    anio = hoy.strftime("%Y")
+
+    def __init__(self):
+        self.d = hoy.strftime("%d")
+        self.mes = hoy.strftime("%m")
+        self.anio = hoy.strftime("%Y")
+
+    def setDia(self, _d, _mes, _anio):
+        self.d = _d
+        self.mes = _mes
+        self.anio = _anio
+
+    def getDia (self):
+        return f"{self.d}/{self.mes}/{self.anio}"
+
+    def imprimirDia(self):
+        print(f"{self.d} / {self.mes} / {self.anio}")
+
+#   Clase tiempo -------------------------------------------------- 
+
+
 class tiempo:
-    dia = 0
-    mes = 0
-    anio = 0
-    hora = 0
-    minuto = 0
+    dia = Dia() 
+    hora = Hora()
 
-    def __init__(self,_anio,_mes,_dia,_hora,_minuto):
-        self.anio = _anio
-        self.mes = _mes
-        self.dia = _dia
-        self.hora = _hora
-        self.minuto = _minuto
+    def __init__(self):
+        pass
 
-    def setFecha(self, _anio, _mes, _dia):
-        self.anio = _anio
-        self.mes = _mes
-        self.dia = _dia
+    def setFecha(self, _dia, _mes, _anio):
+        self.dia.setDia(_dia, _mes, _anio)
     
     def setHora(self, _hora, _minuto):
-        self.hora = _hora
-        self.minuto = _minuto
+        self.hora.setHora(_hora,_minuto)
 
     def getFecha(self):
-        fecha = f"{self.dia},{self.mes},{self.anio} "
-        instante = f"{self.hora},{self.minuto} " 
-        return fecha + instante
+        return f"{self.dia.getDia()},{self.hora.getHora()}"
 
-    def setHoy(self):
-        dia = datetime.datetime()
-        print(dia)
-        return dia
 
+#   Clase Recuerdo --------------------------------------------------
 
 class Recuerdo:
     asunto = ""
