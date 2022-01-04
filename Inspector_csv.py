@@ -2,7 +2,7 @@ import csv
 
 #Variables globales .....................................
 
-Recuerdos_csv = "Asistente_personal/Archivos_memoria/Recuerdos.csv"
+Recuerdos_csv = "Archivos_memoria/Recuerdos.csv"
 
 #........................................................
 

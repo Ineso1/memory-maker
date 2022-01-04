@@ -96,6 +96,9 @@ class Recuerdo:
     def __init__(self, _asunto):
         self.anticipacion_recordatorio.setHora(13,0)
         self.asunto = _asunto
+        self.hora_registro = Tiempo()
+        self.hora_programada = Tiempo()
+        self.alarma = Tiempo() 
         
 
     def setAsunto(self, _asunto):
@@ -109,6 +112,10 @@ class Recuerdo:
     
     def setAlarma(self, _alarma):
         self.alarma = _alarma
+
+    def getRecuerdo(self):
+        recuerdo = f"{self.asunto}"
+        return recuerdo
 
     def imprimirRecuerdo(self):
         print(f"""
