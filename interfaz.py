@@ -1,4 +1,5 @@
 import tkinter as tk
+import os
 from tkinter import *
 from tkinter import ttk
 from Inspector_csv import *
@@ -146,6 +147,8 @@ class Interfaz:
                 recuerdo_generado.setAlarma(self.alarma_hr.get(),self.alarma_min.get(),self.alarma_dia.get(),self.alarma_mes.get(),self.alarma_anio.get())
             cargar_archivos()
             registro_recuerdo(recuerdo_generado.getRecuerdo())
+            with open('Recuerdos.json','w') as archivo:
+                json.dump({'Recuerdos':recuerdo_generado}, archivo, cls=Recuerdo_Encoder_Json, separators=(',',': '), indent= 4)
 
             self.mensaje['fg'] = 'black'
             self.mensaje['text'] = 'El recordatorio {} ha sido agregado con exito'.format(self.asunto.get())

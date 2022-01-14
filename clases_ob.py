@@ -1,4 +1,6 @@
 from datetime import datetime
+import json
+import os
 
 """
 asunto -----> nombre
@@ -128,3 +130,19 @@ class Recuerdo:
         *Hora programada: {self.hora_programada.getFecha()}
         *Alarma: {self.alarma.getFecha()}
         """)
+
+
+
+#   Encoder Json -------------------------------------------------
+
+class Recuerdo_Encoder_Json(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, Recuerdo):
+            return {'asunto':obj.asunto, 'hora_registro':obj.hora_registro.getTiempo(), 'hora_programada': obj.hora_programada.getTiempo(), 'alarma': obj.alarma.getTiempo(), 'anticipacion_recordatorio': obj.anticipacion_recordatorio.getHora()}
+        return json.JSONEncoder.default(self, obj) 
+
+"""
+def Recuerdo_Encoder_Json_Python(diccionario):
+    construccion_recuerdo = Recuerdo(diccionario['asunto'])
+    return 
+"""
