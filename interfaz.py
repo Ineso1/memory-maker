@@ -81,14 +81,51 @@ class Interfaz:
         self.asunto = Entry(inicio)
         self.asunto.focus()
         self.asunto.grid(row = 1, column = 1)
-        #   Hora Programada
-        Label(inicio, text = "Hora Programada").grid(row = 2, column = 0, sticky = W)
-        self.hora_programada = Entry(inicio)
-        self.hora_programada.grid(row = 2, column = 1)
+
+        #   Hora Programada ---> Hora
+        Label(inicio, text = "Hora Programada (hr:min)").grid(row = 2, column = 0, sticky = W)
+        self.hora_programada_hr = Entry(inicio)
+        self.hora_programada_hr.grid(row = 2, column = 1)
+        #   Hora programada ---> Minutos
+        Label(inicio, text = ":").grid(row = 2, column = 2, sticky = W)
+        self.hora_programada_min = Entry(inicio)
+        self.hora_programada_min.grid(row = 2, column = 3)
+        #   Hora programada ---> dia
+        Label(inicio, text = "dia").grid(row = 1, column = 5)
+        Label(inicio, text = ",  ").grid(row = 2, column = 4, sticky = W)
+        self.hora_programada_dia = Entry(inicio)
+        self.hora_programada_dia.grid(row = 2, column = 5)
+        #   Hora programada ---> mes
+        Label(inicio, text = "mes").grid(row = 1, column = 7)
+        Label(inicio, text = " / ").grid(row = 2, column = 6, sticky = W)
+        self.hora_programada_mes = Entry(inicio)
+        self.hora_programada_mes.grid(row = 2, column = 7)
+        #   Hora programada ---> anio
+        Label(inicio, text = "anio").grid(row = 1, column = 9)
+        Label(inicio, text = " / ").grid(row = 2, column = 8, sticky = W)
+        self.hora_programada_anio = Entry(inicio)
+        self.hora_programada_anio.grid(row = 2, column = 9)
+
         #   Alarma
         Label(inicio, text = "Alarma").grid(row = 3, column = 0, sticky = W)
-        self.alarma = Entry(inicio)
-        self.alarma.grid(row = 3, column = 1)
+        self.alarma_hr = Entry(inicio)
+        self.alarma_hr.grid(row = 3, column = 1)
+        #   Alarma ---> Minutos
+        Label(inicio, text = ":").grid(row = 3, column = 2, sticky = W)
+        self.alarma_min = Entry(inicio)
+        self.alarma_min.grid(row = 3, column = 3)
+        #   Alarma ---> dia
+        Label(inicio, text = ",  ").grid(row = 3, column = 4, sticky = W)
+        self.alarma_dia = Entry(inicio)
+        self.alarma_dia.grid(row = 3, column = 5)
+        #   Alarma ---> mes
+        Label(inicio, text = " / ").grid(row = 3, column = 6, sticky = W)
+        self.alarma_mes = Entry(inicio)
+        self.alarma_mes.grid(row = 3, column = 7)
+        #   Alarma ---> anio
+        Label(inicio, text = " / ").grid(row = 3, column = 8, sticky = W)
+        self.alarma_anio = Entry(inicio)
+        self.alarma_anio.grid(row = 3, column = 9)
 
         ttk.Button(inicio, text = "Guardar recordatorio", command = self.agregar_recuerdo).grid(row =  5, columnspan = 2, sticky = W + E)
 
@@ -98,23 +135,31 @@ class Interfaz:
 
 
     def validacion_recuerdo(self):
-        return len(self.asunto.get()) != 0 and len(self.hora_programada.get()) != 0
+        return len(self.asunto.get()) != 0 and len(self.hora_programada_hr.get()) != 0
 
 
     def agregar_recuerdo(self):
         if self.validacion_recuerdo():
             recuerdo_generado = Recuerdo(self.asunto.get())
-            recuerdo_generado.setHoraProgramada(self.hora_programada.get())
-            if self.alarma != 0:
-                recuerdo_generado.setAlarma(self.alarma.get())
+            recuerdo_generado.setHoraProgramada(self.hora_programada_hr.get(),self.hora_programada_min.get(),self.hora_programada_dia.get(),self.hora_programada_mes.get(),self.hora_programada_anio.get())
+            if self.alarma_hr != 0 or self.alarma_min != 0:
+                recuerdo_generado.setAlarma(self.alarma_hr.get(),self.alarma_min.get(),self.alarma_dia.get(),self.alarma_mes.get(),self.alarma_anio.get())
             cargar_archivos()
             registro_recuerdo(recuerdo_generado.getRecuerdo())
 
             self.mensaje['fg'] = 'black'
             self.mensaje['text'] = 'El recordatorio {} ha sido agregado con exito'.format(self.asunto.get())
             self.asunto.delete(0, END)
-            self.hora_programada.delete(0, END)
-            self.alarma.delete(0, END)
+            self.hora_programada_hr.delete(0, END)
+            self.hora_programada_min.delete(0, END)
+            self.hora_programada_dia.delete(0, END)
+            self.hora_programada_mes.delete(0, END)
+            self.hora_programada_anio.delete(0, END)
+            self.alarma_hr.delete(0, END)
+            self.alarma_min.delete(0, END)
+            self.alarma_dia.delete(0, END)
+            self.alarma_mes.delete(0, END)
+            self.alarma_anio.delete(0, END)
         else:
             self.mensaje['fg'] = 'red'
             self.mensaje['text'] = 'Se necesita indicar el asunto y hora programada'

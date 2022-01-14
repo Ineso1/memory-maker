@@ -70,13 +70,17 @@ class Tiempo:
     def __init__(self):
         pass
 
-    def setFecha(self, _dia, _mes, _anio):
+    def setFecha(self, _hora, _minuto, _dia, _mes, _anio):
+        self.dia.setDia(_dia, _mes, _anio)
+        self.hora.setHora(_hora,_minuto)
+
+    def setDia(self, _dia, _mes, _anio):
         self.dia.setDia(_dia, _mes, _anio)
     
     def setHora(self, _hora, _minuto):
         self.hora.setHora(_hora,_minuto)
 
-    def getFecha(self):
+    def getTiempo(self):
         return f"{self.dia.getDia()},{self.hora.getHora()}"
 
     def imprimirTiempo(self):
@@ -104,23 +108,23 @@ class Recuerdo:
     def setAsunto(self, _asunto):
         self.asunto = _asunto
 
-    def setAnticipacion(self, _anticipacion_recordatorio):
-        self.anticipacion_recordatorio = _anticipacion_recordatorio
+    def setAnticipacion(self, _anticipacion_recordatorio_hora, _anticipacion_recordatorio_minuto):
+        self.anticipacion_recordatorio.setHora(_anticipacion_recordatorio_hora,_anticipacion_recordatorio_minuto)
         
-    def setHoraProgramada(self, _hora_programada):
-        self.hora_programada = _hora_programada
+    def setHoraProgramada(self, _hora_programada_hora,_hora_programada_minuto,_hora_programada_dia,_hora_programada_mes,_hora_programada_anio):
+        self.hora_programada.setFecha(_hora_programada_hora,_hora_programada_minuto,_hora_programada_dia,_hora_programada_mes,_hora_programada_anio)
     
-    def setAlarma(self, _alarma):
-        self.alarma = _alarma
+    def setAlarma(self, _alarma_hora,_alarma_minuto,_alarma_dia,_alarma_mes,_alarma_anio):
+        self.alarma.setFecha(_alarma_hora,_alarma_minuto,_alarma_dia,_alarma_mes,_alarma_anio)
 
     def getRecuerdo(self):
-        recuerdo = f"{self.asunto}"
+        #recuerdo = f"{self.asunto},{self.hora_registro.getTiempo()},{self.anticipacion_recordatorio.getHora()},{self.hora_programada.getTiempo()},{self.alarma.getTiempo()}"
+        recuerdo = f"{self.asunto},{self.hora_registro.getTiempo()},{self.anticipacion_recordatorio.getHora()},{self.hora_programada.getTiempo()},{self.alarma.getTiempo()}"
         return recuerdo
 
     def imprimirRecuerdo(self):
         print(f"""
         *Asunto: {self.asunto}
-        *Hora programada: {self.hora_programada.imprimirTiempo()}
-        *Alarma: {self.alarma.imamirTiempo()}
+        *Hora programada: {self.hora_programada.getFecha()}
+        *Alarma: {self.alarma.getFecha()}
         """)
-
