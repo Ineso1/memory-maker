@@ -1,2 +1,2 @@
-# Asistente_personal
-Mi asistente personal, nombre no proporsionado aun
+# Memories maker
+Memories creator using python classes, jsons encoder, tkinter interface, voice recognition library
